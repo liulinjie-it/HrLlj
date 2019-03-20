@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <title>HR 人力资源管理平台</title>
+  <base href="/">
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+    integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+
+</head>
+
+<body>
+
+  <div>
+    <!-- 展板 -->
+    <div class="jumbotron jumbotron-fluid py-3">
+      <div class="container">
+        <h1 class="display-4">{{title}}</h1>
+        <p class="lead"><span class="badge badge-pill badge-danger">{{author}}</span></p>
+      </div>
+    </div>
+
+    <!-- 容器 -->
+    <div class="container-fluid">
+
+      <div class="row">
+        <div class="col-lg-4 col-sm-12">
+          <!-- 输入表单 -->
+          <div class="card">
+            <div class="card-body">
+              <!-- 输入框 -->
+              <div class="form-group">
+                <label for="">员工编号</label>
+                <input [(ngModel)]="hrid" type="text" class="form-control" placeholder="编号">
+              </div>
+              <div class="form-group">
+                <label for="">姓名</label>
+                <input [(ngModel)]="name" type="text" class="form-control" placeholder="姓名">
+              </div>
+              <div class="form-group">
+                <label for="">职位</label>
+                <select [(ngModel)]="job" class="form-control">
+                  <option *ngFor="let job of jobs" >{{job}}</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="">联系方式</label>
+                <input [(ngModel)]="phone" type="text" class="form-control" maxlength="11" placeholder="手机号">
+              </div>
+
+              <!-- 按钮 -->
+              <button (click)="add()" class="btn btn-success btn-block">创建新员工</button>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-8 col-sm-12">
+          <!-- 显示表格 -->
+          <table class="table">
+            <thead>
+              <tr>
+                <th>编号</th>
+                <th>姓名</th>
+                <th>职位</th>
+                <th>联系方式</th>
+                <th style="width: 20%">操作</th>
+              </tr>
+            </thead>
+            <tbody>
+              <!-- 第一行 -->
+              <tr *ngFor="let h of hrlist">
+                <td>{{h.hrid}}</td>
+                <td>{{h.name}}</td>
+                <td>{{h.job}}</td>
+                <td>{{h.phone}}</td>
+                <td>
+                  <div class="row">
+                    <div class="col-lg-6 col-sm-12">
+                      <button class="btn btn-primary btn-block" data-toggle="modal" data-target="#modelEdit">编辑</button>
+
+                      <!--对话框  -->
+                      <div class="modal fade" id="modelEdit" tabindex="-1" role="dialog" aria-labelledby="modelTitleId"
+                        aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <h5 class="modal-title">修改员工资料</h5>
+                              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                              </button>
+                            </div>
+                            <div class="modal-body">
+                              <div class="form-group">
+                                <label for="">姓名</label>
+                                <input type="text" class="form-control" placeholder="姓名">
+                              </div>
+                              <div class="form-group">
+                                <label for="">职位</label>
+                                <select class="form-control">
+                                  <option></option>
+                                </select>
+                              </div>
+                              <div class="form-group">
+                                <label for="">联系方式</label>
+                                <input type="text" class="form-control" maxlength="11" placeholder="手机号">
+                              </div>
+                            </div>
+                            <div class="modal-footer">
+                              <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
+                              <button type="button" class="btn btn-primary" data-dismiss="modal">保存</button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-lg-6 col-sm-12">
+                      <button class="btn btn-danger btn-block mt-sm-3 mt-lg-0">删除</button>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Optional JavaScript -->
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+    integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+    integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+    crossorigin="anonymous"></script>
+</body>
+
+</html>
