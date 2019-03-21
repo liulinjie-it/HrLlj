@@ -7,11 +7,13 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HrComponent } from './hr/hr.component';
 import { DataService } from './data.service';
+import { NavComponent } from './nav/nav.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HrComponent
+    HrComponent,
+    NavComponent
   ],
   imports: [
     BrowserModule,

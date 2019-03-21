@@ -1,4 +1,4 @@
-package com.newer.HRMongoDB;
+package com.newer.HRMySql;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

@@ -1,4 +1,4 @@
-package com.newer.HRMongoDB.Controller;
+package com.newer.HRMySql.Controller;
 
 import java.util.List;
 
@@ -11,8 +11,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.newer.HRMongoDB.HR;
 import com.newer.HRMongoDB.Repository.HRRepository;
+import com.newer.HRMySql.HR;
 
 @RestController
 @CrossOrigin
@@ -23,7 +23,7 @@ public class HomeController {
 	
 	@GetMapping("/hrlist")
 	public List<HR> hrlist(){
-		
+		System.out.println(hrt.count());
 		return hrt.findAll();
 	}
 	
@@ -38,9 +38,6 @@ public class HomeController {
 	}
 	@PostMapping("/hrup")
 	public List<HR> hrup(){
-		
-		
-		
 		return hrt.findAll();
 	} 
 	@PostMapping("/hrdlt")

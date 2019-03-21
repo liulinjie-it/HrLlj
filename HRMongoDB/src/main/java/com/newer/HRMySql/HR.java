@@ -1,4 +1,4 @@
-package com.newer.HRMongoDB;
+package com.newer.HRMySql;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -10,17 +10,17 @@ import org.springframework.data.mongodb.core.mapping.Field;
  *
  */
 
-@Document(collection="HR")
+//@Document(collection="HR")
 public class HR {
-	@Id
+//	@Id
     private String id;
-	@Field
+//	@Field
 	private int Hrid;
-	@Field
+//	@Field
 	private String name;
-	@Field
+//	@Field
 	private String job;
-	@Field
+//	@Field
 	private String phone;
 
 	public HR() {
