@@ -1,4 +1,4 @@
-package com.newer.HRMySql;
+package com.newer.HRMongoDB;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;

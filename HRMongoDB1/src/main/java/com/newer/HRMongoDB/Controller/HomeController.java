@@ -1,4 +1,4 @@
-package com.newer.HRMySql.Controller;
+package com.newer.HRMongoDB.Controller;
 
 import java.util.List;
 
@@ -11,8 +11,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.newer.HRMongoDB.HR;
 import com.newer.HRMongoDB.Repository.HRRepository;
-import com.newer.HRMySql.HR;
 
 @RestController
 @CrossOrigin
