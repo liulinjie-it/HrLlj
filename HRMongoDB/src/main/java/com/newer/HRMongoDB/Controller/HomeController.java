@@ -45,6 +45,7 @@ public class HomeController {
 	} 
 	@PostMapping("/hrdlt")
 	public List<HR> hrdlt(@RequestBody HR hr){
+		System.out.println(hr.getId());
 		hrt.deleteById(hr.getId());
 		return hrt.findAll();
 	}

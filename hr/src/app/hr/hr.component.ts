@@ -8,9 +8,10 @@ import { DataService } from '../data.service';
   styleUrls: ['./hr.component.css']
 })
 export class HrComponent implements OnInit {
+  id: string;
   hrid: string;
   name: string;
-  job: string;
+  job = 'java';
   phone: string;
   title = '人力资源管理';
   author = '刘林洁';
@@ -34,14 +35,22 @@ export class HrComponent implements OnInit {
      name = this.name.trim();
      job  = this.job.trim();
      phone = this.phone.trim();
-     console.log(this.hrid);
-     console.log(this.name);
-     console.log(this.job);
-     console.log(this.phone);
-     this.service.postHttpHradd({hrid, name, job, phone} as Hr).subscribe(
+     this.service.postHttpHradd({ hrid, name, job, phone} as Hr).subscribe(
        (add) => {
          this.hrlist = add;
        }
      );
+     this.hrid = '';
+     this.name = '';
+     this.job = 'java';
+     this.phone = '';
+  }
+  dlt(id: string) {
+    this.service.postHttpHrdlt({id} as Hr ).subscribe(
+      (dlt) => {
+        this.hrlist = dlt;
+        console.log('成功得到');
+      }
+    );
   }
 }

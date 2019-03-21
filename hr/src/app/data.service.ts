@@ -21,4 +21,9 @@ export class DataService {
         params : new  HttpParams().set('', '')
       } );
   }
+  postHttpHrdlt(hr?: Hr): Observable<Hr[]> {
+    return this.http.post<Hr[]>('http://192.168.137.1:8080/hrdlt', hr , {
+      params : new HttpParams().set('', '')
+    });
+  }
 }

@@ -73,7 +73,7 @@
             </thead>
             <tbody>
               <!-- 第一行 -->
-              <tr *ngFor="let h of hrlist">
+              <tr *ngFor="let h of hrlist let i = index">
                 <td>{{h.hrid}}</td>
                 <td>{{h.name}}</td>
                 <td>{{h.job}}</td>
@@ -119,7 +119,7 @@
                       </div>
                     </div>
                     <div class="col-lg-6 col-sm-12">
-                      <button class="btn btn-danger btn-block mt-sm-3 mt-lg-0">删除</button>
+                      <button (click)="dlt(h.id)" class="btn btn-danger btn-block mt-sm-3 mt-lg-0">删除</button>
                     </div>
                   </div>
                 </td>
