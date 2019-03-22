@@ -15,7 +15,9 @@ export class DataService {
   ) {
   }
   getHttpHrlist(): Observable<Hr[]> {
-      return this.http.get<Hr[]>('http://192.168.137.1:8080/hrlist');
+      return this.http.get<Hr[]>('http://192.168.137.1:8080/hrlist', {
+        params: new HttpParams().set('nm', '1')
+      });
   }
   getHttpjblist(): Observable<Job[]> {
     return this.http.get<Job[]>('http://192.168.137.1:8080/jblist');
@@ -34,5 +36,16 @@ export class DataService {
     return this.http.post<Hr[]>('http://192.168.137.1:8080/hrupdt' , hr, {
 
     });
+  }
+  getHttphrnums(): Observable<number[]> {
+     return this.http.get<number[]>('http://192.168.137.1:8080/hrnums');
+  }
+  getHttphrnm(nm: string): Observable<Hr[]> {
+      return this.http.get<Hr[]>('http://192.168.137.1:8080/hrlist', {
+        params : new HttpParams().set('nm', nm)
+      });
+  }
+  gethttphrhye(nm: number): Observable<Hr[]> {
+    return this.http.get<Hr[]>('http://192.168.137.1:8080/hrlist');
   }
 }

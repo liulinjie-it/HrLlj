@@ -92,6 +92,26 @@
               </tr>
             </tbody>
           </table>
+           
+          <nav aria-label="Page navigation">
+            <ul class="pagination justify-content-center">
+              <li class="page-item disabled">
+                <a class="page-link" href="#" aria-label="Previous">
+                  <span aria-hidden="true">&laquo;</span>
+                  <span class="sr-only">Previous</span>
+                </a>
+              </li>
+              <li (click)="nm(n)" *ngFor="let n of nums" class="page-item "><a class="page-link" >{{n}}</a></li>
+              <li (click)="next()" class="page-item">
+                <a class="page-link"  aria-label="Next">
+                  <span aria-hidden="true">&raquo;</span>
+                  <span  class="sr-only">Next</span>
+                </a>
+              </li>
+            </ul>
+          </nav>
+
+          <!-- <modal> -->
           <div class="modal fade" id="modelEdit" tabindex="-1" role="dialog" aria-labelledby="modelTitleId"
           aria-hidden="true">
           <div class="modal-dialog" role="document">
@@ -126,9 +146,9 @@
             </div>
           </div>
         </div>
-          <app-nav></app-nav>
+        
         </div>
-
+        
       </div>
     </div>
   </div>
