@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Hr } from './hr';
 import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 import { Observable} from 'rxjs';
+import { Job } from './job';
 
 
 @Injectable({
@@ -16,6 +17,9 @@ export class DataService {
   getHttpHrlist(): Observable<Hr[]> {
       return this.http.get<Hr[]>('http://192.168.137.1:8080/hrlist');
   }
+  getHttpjblist(): Observable<Job[]> {
+    return this.http.get<Job[]>('http://192.168.137.1:8080/jblist');
+ }
   postHttpHradd(hr?: Hr): Observable<Hr[]> {
       return this.http.post<Hr[]>('http://192.168.137.1:8080/hradd', hr , {
         params : new  HttpParams().set('', '')
@@ -24,6 +28,11 @@ export class DataService {
   postHttpHrdlt(hr?: Hr): Observable<Hr[]> {
     return this.http.post<Hr[]>('http://192.168.137.1:8080/hrdlt', hr , {
       params : new HttpParams().set('', '')
+    });
+  }
+  postHttpHrsave(hr?: Hr): Observable<Hr[]> {
+    return this.http.post<Hr[]>('http://192.168.137.1:8080/hrupdt' , hr, {
+
     });
   }
 }
