@@ -18,16 +18,18 @@ export class HrComponent implements OnInit {
   uname: string;
   ujob: string;
   uphone: string;
-  nt = '1';
+  nt = 1;
   title = '人力资源管理';
   author = '刘林洁';
   hrlist: Array<Hr>;
   uphr: Hr;
   jobs = ['java', 'c++', '运维' , '数据库'];
   nums: Array<number>;
+  fangshi: string;
+  maxn: number;
   constructor(private service: DataService,
     ) {
-    service.getHttpHrlist().subscribe(
+    service.getHttpHrlist(this.nt).subscribe(
       (hr) => {
         this.hrlist = hr;
         console.log(hr);
@@ -37,7 +39,7 @@ export class HrComponent implements OnInit {
     service.getHttphrnums().subscribe(
       (nm) => {
         this.nums = nm;
-        console.log(nm);
+        this.maxn = this.nums.length;
       }
     );
   }
@@ -49,15 +51,19 @@ export class HrComponent implements OnInit {
      name = this.name.trim();
      job  = this.job.trim();
      phone = this.phone.trim();
+     if (hrid !== 0 && name !== '' && job !== '' && phone !== '') {
      this.service.postHttpHradd({ hrid, name, job, phone} as Hr).subscribe(
        (add) => {
          this.hrlist = add;
        }
      );
+      } else {
+        console.log('数据不能为空');
+      }
      this.service.getHttphrnums().subscribe(
       (nm) => {
         this.nums = nm;
-        console.log(nm);
+        this.maxn = this.nums.length;
       }
     );
      this.hrid = 0;
@@ -69,13 +75,12 @@ export class HrComponent implements OnInit {
     this.service.postHttpHrdlt({id} as Hr ).subscribe(
       (dlt) => {
         this.hrlist = dlt;
-        console.log('成功得到');
       }
     );
     this.service.getHttphrnums().subscribe(
       (nm) => {
         this.nums = nm;
-        console.log(nm);
+        this.maxn = this.nums.length;
       }
     );
 
@@ -101,12 +106,11 @@ export class HrComponent implements OnInit {
     this.service.getHttphrnums().subscribe(
       (nm) => {
         this.nums = nm;
-        console.log(nm);
+        this.maxn = this.nums.length;
       }
     );
   }
-   nm(nm: string) {
-     console.log(nm);
+   nm(nm: number) {
      this.nt = nm;
      this.service.getHttphrnm(nm).subscribe(
        (hr) => {
@@ -122,9 +126,22 @@ export class HrComponent implements OnInit {
    }
    next() {
       this.nt = this.nt + 1;
-      console.log(this.nt);
+      if (this.nt > this.maxn) {
+         this.nt = this.nt - 1;
+      }
+      this.service.gethttphrhye(this.nt).subscribe(
+      (hr) => {
+        this.hrlist = hr;
+      }
+      );
    }
    perv() {
-
+    this.nt = this.nt - 1;
+    console.log(this.nt);
+    this.service.gethttphrhye(this.nt).subscribe(
+      (hr) => {
+        this.hrlist = hr;
+      }
+      );
    }
 }

@@ -10,6 +10,7 @@ import org.springframework.data.domain.Sort.Direction;
 import org.springframework.data.domain.Sort.Order;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -29,15 +30,15 @@ public class HomeController {
 	@Autowired
 	homeRepository hrt;
 	
-	@GetMapping("/hrlist")
-	public List<HR> findall(@RequestParam String nm){
+	@GetMapping("/hrlist/{nm}")
+	public List<HR> findall(@PathVariable int nm){
 //		System.out.println(hrt.count());
-		index = Integer.parseInt(nm);
+		index = nm;
 		System.out.println(nm);
 		List<Order> orders = new ArrayList<Order>();
 		orders.add(new Order(Direction.ASC, "id"));
 		Sort sort = new Sort(orders);
-		PageModel pModel = new PageModel(Integer.parseInt(nm), size,sort);
+		PageModel pModel = new PageModel(index, size,sort);
 		SpringbootPageable springbootPageable =new SpringbootPageable(pModel);
 		return hrt.findAll(springbootPageable).getContent();
 	}
